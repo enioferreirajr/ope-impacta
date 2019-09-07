@@ -1,5 +1,5 @@
 from app import app
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import render_template, request, redirect, url_for, session
 
 import mysql.connector
 
@@ -12,8 +12,9 @@ connection = mysql.connector.connect(host='localhost',
                                          auth_plugin='mysql_native_password')
 
 
+
 @app.route('/cadastro_produto/', methods=['GET', 'POST'])
-def cadastrar_produto():
+def cadastro_produto():
     return render_template('cadastroProdutos.html')
 
 
@@ -59,7 +60,7 @@ def login():
             # Account doesnt exist or username/password incorrect
             msg = 'Incorrect username/password!'
     # Show the login form with message (if any)
-    return render_template('index.html', msg=msg)
+    return render_template('login.html', msg=msg)
 
 # http://localhost:5000/python/logout - this will be the logout page
 @app.route('/CFLogin/logout')
@@ -71,16 +72,14 @@ def logout():
    # Redirect to login page
    return redirect(url_for('login'))
 
-# http://localhost:5000/pythinlogin/home - this will be the home page, only accessible for loggedin users
 @app.route('/CFLogin/home', methods=['POST', 'GET'])
 def home():
     # Check if user is loggedin
     if 'loggedin' in session:
-        # User is loggedin show them the home page
         return render_template('home.html', username=session['username'])
 
     if request.method == 'GET':
-        return redirect(url_for('CFCadastroProduto'))
+        return redirect(url_for('cadastro_produto'))
 
     # User is not loggedin redirect to login page
     return redirect(url_for('login'))
