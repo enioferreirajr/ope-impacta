@@ -9,7 +9,11 @@ connection = db.db_connection()
 @app.route('/index/')
 def index():
     if 'loggedin' in session:
-        return render_template('home.html', username=session['username'])
+        return render_template('dashboard.html',
+                               loggedin=session['loggedin'],
+                               username=session['username'],
+                               breadcrumb='parâmetro breadcrumb',
+                               page_header='parâmetro page_header')
     return redirect(url_for('login'))
 
 
