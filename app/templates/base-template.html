@@ -80,6 +80,8 @@
 
 	{% endif %} <!--/endif loggedin-->
 
+	{% block login %}{% endblock %}
+
 	<script src="{{ url_for('static', filename='js/jquery-1.11.1.min.js') }}"></script>
 	<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
 	<script src="{{ url_for('static', filename='js/bootstrap-datepicker.js') }}"></script>
