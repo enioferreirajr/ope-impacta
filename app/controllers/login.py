@@ -34,4 +34,6 @@ def login():
             return redirect(url_for('home'))
         else:
             msg = 'Nome de usuário ou Senha inválido!'
-    return render_template('login.html', msg=msg)
+    return render_template('login.html',
+                           msg=msg,
+                           loggedin='')
